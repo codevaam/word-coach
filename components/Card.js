@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Card = (props) => (
     <div>
-        <Link href={props.to}>
+        <Link href={props.to} query={props.title}>
             <a className="card">
                 <h3>{props.title} &rarr;</h3>
                 <p>{props.description}</p>

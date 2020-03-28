@@ -17,14 +17,10 @@ class App extends Component {
         
         super(props);
         this.state = ({
-            difficulty: '',
-            words: [],
-            current: '',
-            currentAns: '',
+            questions: '',
             questionNo: 0,
-            // definitions: [],
-            // definition: '',
-            // partOfSpeech: '',
+            current: '',
+            eq: ''
         })
     }
     render() {
@@ -35,7 +31,7 @@ class App extends Component {
                 </Head>
                 <center>
                     <h1>Difficulty: {this.state.difficulty}</h1>
-                    <h3>Word: {this.state.current}</h3>
+                    <h3>Question: {this.state.current}</h3>
                     {/* <h4>Part of Speech: {this.state.partOfSpeech}</h4>
                     <p>Definition: {this.state.definition}</p> */}
                     <button onClick={() => { this.editor.clear() }}>Clear</button>
@@ -43,6 +39,7 @@ class App extends Component {
                 </center>
 
                 <div style={editorStyle} ref="editor" >
+                <div class="toast"></div>
                 </div>
             </div>
         );
@@ -52,29 +49,13 @@ class App extends Component {
         loc = loc.split('/')
         console.log(loc)
         this.setState({difficulty: loc[4]})
-        axios.get(`http://localhost:8080/eng/${loc[4]}`)
+        axios.get(`http://localhost:8080/math/${loc[4]}`)
             .then(res => {
-                let arr = [];
-                let def = [];
-                for (var i in res.data) {
-                    arr.push(res.data[i].word)
-                    // axios.get(`https://wordsapiv1.p.rapidapi.com/words/${res.data[i].word}/definitions`, {
-                    //     headers: {
-                    //         "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-                    //         "x-rapidapi-key": "dee7410ecemshfce7d4e41be4e08p13acd4jsn987a07e0067a"
-                    //     }
-                    // }).then(res => {
-                    //     // console.log(def)
-                    //     def.push(res.data)
-                    //     this.setState({ definitions: def })
-                    // })
-                }
-                this.setState({ words: arr })
-                console.log(this.state.words)
+                this.setState({ questions: res.data })
             }).then(this.dispWord)
         this.editor = MyScriptJS.register(this.refs.editor, {
             recognitionParams: {
-                type: 'TEXT',
+                type: 'MATH',
                 protocol: 'WEBSOCKET',
                 apiVersion: 'V4',
                 server: {
@@ -85,20 +66,25 @@ class App extends Component {
                 },
             },
         });
-        
+        //https://github.com/MyScript/MyScriptJS/blob/master/examples/v4/websocket_math_iink.html
+        //https://github.com/MyScript/myscript-math-web#documentation
+        //https://myscript.github.io/myscript-math-web/src/demo-app/examples/non-version-specific/handle_exports.html
+        // this.editor.addEventListener("exported", (evt) => {
+        //     const exports = evt.detail.exports;
+        //     console.log(exports)
+        // })
         window.addEventListener("resize", () => { this.editor.resize() });
     }
     
     dispWord = () => {
-        if (this.state.words.length !== 0) {
+        if (this.state.questions.length !== 0) {
             let qno = this.state.questionNo;
-            let word = this.state.words[qno];
+            let word = this.state.questions[qno];
             String.prototype.replaceAt = function (index, replacement) {
                 return this.substr(0, index) + replacement + this.substr(index + replacement.length);
             }
             const index = Math.floor(Math.random() * (word.length - 1) + 1)
             this.setState({ currentAns: word.charAt(index) });
-            word = word.toUpperCase().replaceAt(index, '_')
             this.setState({ current: word })
             // console.log(this.state.definitions)
             // this.setState({ definition: this.state.definitions[qno].definition})
@@ -106,23 +92,25 @@ class App extends Component {
         }
     }
     checkAns = () => {
-        let input = this.editor.exports['text/plain'];
-        input = input.toLowerCase()
-        if (this.state.currentAns == input) {
-            if (this.state.questionNo > 4) {
-                alert("You finished the quiz, thanks")
-            }
-            else {
-                this.setState({ questionNo: ++this.state.questionNo })
-                this.editor.clear()
-                this.dispWord()
-                alert("correct ans")
-            }
-        }
-        else {
-            this.editor.clear()
-            alert("try again")
-        }
+        
+        // let input = this.editor.export();
+        // console.log(input)
+        // input = input.toLowerCase()
+        // if (this.state.currentAns == input) {
+        //     if (this.state.questionNo > 4) {
+        //         alert("You finished the quiz, thanks")
+        //     }
+        //     else {
+        //         this.setState({ questionNo: ++this.state.questionNo })
+        //         this.editor.clear()
+        //         this.dispWord()
+        //         alert("correct ans")
+        //     }
+        // }
+        // else {
+        //     this.editor.clear()
+        //     alert("try again")
+        // }
     }
 }
 
