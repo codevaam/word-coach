@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import axios from 'axios';
 import React, { Component } from 'react';
 import * as MyScriptJS from 'myscript';
+import { evaluate } from 'mathjs';
 
 const editorStyle = {
     'minWidth': '100px',
@@ -14,10 +15,10 @@ const editorStyle = {
 
 class App extends Component {
     constructor(props) {
-        
+
         super(props);
         this.state = ({
-            questions: '',
+            questions: [],
             questionNo: 0,
             current: '',
             eq: ''
@@ -39,7 +40,7 @@ class App extends Component {
                 </center>
 
                 <div style={editorStyle} ref="editor" >
-                <div class="toast"></div>
+                    <div class="toast"></div>
                 </div>
             </div>
         );
@@ -48,14 +49,14 @@ class App extends Component {
         let loc = window.location.toString();
         loc = loc.split('/')
         console.log(loc)
-        this.setState({difficulty: loc[4]})
+        this.setState({ difficulty: loc[4] })
         axios.get(`http://localhost:8080/math/${loc[4]}`)
             .then(res => {
                 this.setState({ questions: res.data })
             }).then(this.dispWord)
         this.editor = MyScriptJS.register(this.refs.editor, {
             recognitionParams: {
-                type: 'MATH',
+                type: 'TEXT',
                 protocol: 'WEBSOCKET',
                 apiVersion: 'V4',
                 server: {
@@ -75,42 +76,38 @@ class App extends Component {
         // })
         window.addEventListener("resize", () => { this.editor.resize() });
     }
-    
+
     dispWord = () => {
         if (this.state.questions.length !== 0) {
             let qno = this.state.questionNo;
-            let word = this.state.questions[qno];
-            String.prototype.replaceAt = function (index, replacement) {
-                return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-            }
-            const index = Math.floor(Math.random() * (word.length - 1) + 1)
-            this.setState({ currentAns: word.charAt(index) });
-            this.setState({ current: word })
+            let ques = this.state.questions[qno];
+            console.log(evaluate(ques))
+            this.setState({ currentAns: evaluate(ques) })
+            this.setState({ current: ques })
             // console.log(this.state.definitions)
             // this.setState({ definition: this.state.definitions[qno].definition})
             // this.setState({ partOfSpeech: this.state.definitions[qno].partOfSpeech})
         }
     }
     checkAns = () => {
-        
-        // let input = this.editor.export();
-        // console.log(input)
-        // input = input.toLowerCase()
-        // if (this.state.currentAns == input) {
-        //     if (this.state.questionNo > 4) {
-        //         alert("You finished the quiz, thanks")
-        //     }
-        //     else {
-        //         this.setState({ questionNo: ++this.state.questionNo })
-        //         this.editor.clear()
-        //         this.dispWord()
-        //         alert("correct ans")
-        //     }
-        // }
-        // else {
-        //     this.editor.clear()
-        //     alert("try again")
-        // }
+        let input = this.editor.exports['text/plain'];
+        console.log(input)
+        input = parseInt(input);
+        if (this.state.currentAns == input) {
+            if (this.state.questionNo > 4) {
+                alert("You finished the quiz, thanks")
+            }
+            else {
+                this.setState({ questionNo: ++this.state.questionNo })
+                this.editor.clear()
+                this.dispWord()
+                alert("correct ans")
+            }
+        }
+        else {
+            this.editor.clear()
+            alert("try again")
+        }
     }
 }
 
