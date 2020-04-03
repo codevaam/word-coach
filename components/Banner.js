@@ -4,7 +4,7 @@ export default class Banner extends Component {
   render() {
     return (
       <div className="banner">
-        <div className="container text-left p-3 d-flex">
+        <div className=" text-left p-3 d-flex">
           <div className="row w-100">
             <div className="col-md-6 d-flex align-items-center">
               <img src="/clock.png" alt="" className="float-left mr-3" style={{ width: "12%" }} />

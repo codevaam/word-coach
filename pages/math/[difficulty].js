@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import * as MyScriptJS from 'myscript';
 import { evaluate } from 'mathjs';
+import Navbar from '../../components/Navbar';
 
 const editorStyle = {
     'minWidth': '100px',
@@ -26,6 +27,7 @@ class App extends Component {
     render() {
         return (
             <div className="container">
+            <Navbar />
                 <Head>
                     <title>Create Next App</title>
                     <link rel="icon" href="/favicon.ico" />
