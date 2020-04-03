@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Header from '../../components/Header';
 import axios from 'axios';
 import React, { Component } from 'react';
 import * as MyScriptJS from 'myscript';
@@ -28,7 +27,14 @@ class App extends Component {
         return (
             <div className="container">
                 <Head>
-                    <Header />
+                    <title>Create Next App</title>
+                    <link rel="icon" href="/favicon.ico" />
+                    <link
+                        rel="stylesheet"
+                        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                        crossOrigin="anonymous"
+                    />
                 </Head>
                 <center>
                     <h1>Difficulty: {this.state.difficulty}</h1>
