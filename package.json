@@ -18,6 +18,8 @@
     "react": "16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-canvas-draw": "^1.1.0",
+    "react-compound-timer": "^1.2.0",
+    "react-countdown-circle-timer": "^1.1.1",
     "react-dom": "16.13.1",
     "react-google-login": "^5.1.2"
   }

@@ -4,18 +4,19 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import * as MyScriptJS from 'myscript';
 import { evaluate } from 'mathjs';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/TopNav';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+
 
 const editorStyle = {
     'minWidth': '100px',
     'minHeight': '100px',
-    'width': '100vw',
     'height': 'calc(100vh - 190px)',
+    'backgroundColor': 'white'
 };
 
 class App extends Component {
     constructor(props) {
-
         super(props);
         this.state = ({
             questions: [],
@@ -24,10 +25,20 @@ class App extends Component {
             eq: ''
         })
     }
+    renderTime = (value) => {
+        if (value === 0) {
+            return <div className="timer">Too lale...</div>;
+        }
+        else {
+            return (
+                <div className="text-center">{value}</div>
+            );
+        }
+    };
     render() {
         return (
-            <div className="container">
-            <Navbar />
+            <div className="bg">
+                <Navbar />
                 <Head>
                     <title>Create Next App</title>
                     <link rel="icon" href="/favicon.ico" />
@@ -38,18 +49,55 @@ class App extends Component {
                         crossOrigin="anonymous"
                     />
                 </Head>
-                <center>
-                    <h1>Difficulty: {this.state.difficulty}</h1>
-                    <h3>Question: {this.state.current}</h3>
+                <div className="row no-gutters mt-3 px-5">
+                    <h2 className="text-white">{this.state.current}</h2>
+
+                    <CountdownCircleTimer className="justify-content-center"
+                        onComplete={() => {
+                            alert("Too late");
+                            this.editor.clear();
+                            this.setState({ questionNo: ++this.state.questionNo })
+                            this.dispWord();
+                            return [true, 1]
+                        }}
+                        size={50}
+                        renderTime={this.renderTime}
+                        isPlaying={this.state.playing}
+                        durationSeconds={15}
+                        colors={[
+                            ['#004777', .33],
+                            ['#F7B801', .33],
+                            ['#A30000']
+                        ]}
+                        key={this.state.questionNo}
+                    />
                     {/* <h4>Part of Speech: {this.state.partOfSpeech}</h4>
                     <p>Definition: {this.state.definition}</p> */}
-                    <button onClick={() => { this.editor.clear() }}>Clear</button>
-                    <button onClick={this.checkAns}>Check</button>
-                </center>
-
-                <div style={editorStyle} ref="editor" >
-                    <div class="toast"></div>
+                    <div>
+                        <button className="my-2" onClick={this.checkAns}>Check</button>
+                        <button className="my-2 ml-3" onClick={() => { this.editor.clear() }}>Clear</button>
+                    </div>
                 </div>
+                <h4 className="text-center text-white">Fill in the blank space</h4>
+                <div className="row no-gutters">
+                    <div className="col mx-2 side-div">
+                        <h3 className="text-center m-3">Progress &rarr;</h3>
+                    </div>
+                    <div className="col mx-2" style={editorStyle} ref="editor" ></div>
+                    <div className="col mx-2 side-div">
+                        <h3 className="text-center m-3">Leaderboard &rarr;</h3>
+                    </div>
+                </div>
+                <style jsx>{`
+                    .side-div {
+                        background-color: white;
+                    }
+                    button {
+                        border-color: transparent;
+                        background-color: lightgreen;
+                    }
+                `}
+                </style>
             </div>
         );
     }
@@ -101,20 +149,20 @@ class App extends Component {
         let input = this.editor.exports['text/plain'];
         console.log(input)
         input = parseInt(input);
-        if (this.state.currentAns == input) {
-            if (this.state.questionNo > 4) {
-                alert("You finished the quiz, thanks")
-            }
-            else {
+        if (this.state.questionNo == 4) {
+            alert("You finished the quiz, thanks")
+        }
+        else {
+            if (this.state.currentAns == input) {
                 this.setState({ questionNo: ++this.state.questionNo })
                 this.editor.clear()
                 this.dispWord()
                 alert("correct ans")
             }
-        }
-        else {
-            this.editor.clear()
-            alert("try again")
+            else {
+                this.editor.clear()
+                alert("try again")
+            }
         }
     }
 }
