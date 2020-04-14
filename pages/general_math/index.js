@@ -21,9 +21,9 @@ const Home = () => (
         <main className="container mt-5">
             <center><h2 className="text-light">General Maths</h2></center>
             <Row className="justify-content-center">
-                    <Col md={4}><SubjectCard to="/general_maths/easy" title="Easy" description="Basic level addition, multiplication calculations" /></Col>
-                    <Col md={4}><SubjectCard to="/general_maths/medium" title="Medium" description="Solving basic and medium level equations" /></Col>
-                    <Col md={4}><SubjectCard to="/general_maths/hard" title="Hard" description="Higher level math equations and calculations" /></Col>
+                    <Col md={4}><SubjectCard to="/general_math/easy" title="Easy" description="Basic level addition, multiplication calculations" /></Col>
+                    <Col md={4}><SubjectCard to="/general_math/medium" title="Medium" description="Solving basic and medium level equations" /></Col>
+                    <Col md={4}><SubjectCard to="/general_math/hard" title="Hard" description="Higher level math equations and calculations" /></Col>
                 </Row>
         </main>
     </div>

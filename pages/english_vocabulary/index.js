@@ -26,15 +26,6 @@ const Home = () => (
                 <Col md={4}><SubjectCard to="/english_vocabulary/hard" title="Hard" description="Higher level english vocabulary" /></Col>
             </Row>
         </main>
-        {/* <style jsx>{`
-            .bg {
-                height: 100vh;
-                width: auto;
-                background-image: url('https://i.ibb.co/GP5Dh2h/889.jpg');
-                background-size: cover;
-            }    
-        `}
-        </style> */}
     </div>
 )
 

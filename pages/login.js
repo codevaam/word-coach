@@ -20,7 +20,7 @@ const responseGoogle = (response) => {
             }
             else {
                 console.log(res.data)
-                Router.push('/')
+                Router.push('/profile')
             }
         })
     }

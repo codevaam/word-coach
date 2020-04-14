@@ -16,8 +16,8 @@ const Profile = () => {
                 email: localStorage.getItem('email')
             }
         }).then(res => {
-            updateUser(res.data)
-            console.log(user)
+            console.log(res)
+            updateUser(res.data[0])
         })
         axios.get(`http://localhost:8080/users/allCourses`)
             .then(res => {
@@ -83,12 +83,12 @@ const Profile = () => {
             <div className="p-3 user-section">
                 {/* <img className="bgimg" src={require('../public/bg1920.png')}></img> */}
                 <div className="row mx-5">
-                    <p className="name">Devam Trivedi</p>
+                    <p className="name">{user.name}</p>
                     <button className="edit-button ml-auto mt-3 mb-1">Edit profile</button>
                 </div>
                 <div className="row mx-5">
-                    <p className="username">@d3vam</p>
-                    <p className="points ml-auto">Points: 245</p>
+                    <p className="username">@{user.username}</p>
+                    <p className="points ml-auto">Points: {user.points}</p>
                 </div>
             </div>
             <div className="mx-5">

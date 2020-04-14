@@ -7,20 +7,32 @@ import Router from 'next/router';
 
 
 const Register = () => {
-    const handleNameChange = () => {
+    const handleUnameChange = () => {
         updateUname(event.target.value)
+    }
+    const handleNameChange = () => {
+        updateName(event.target.value)
     }
 
     const handleStdChange = () => {
         updateStd(event.target.value)
     }
+    const handleCityChange = () => {
+        updateCity(event.target.value)
+    }
+    const handleCountryChange = () => {
+        updateCountry(event.target.value)
+    }
     const addUser = () => {
         axios.post('http://localhost:8080/users/addUser', {
+            name: name,
             email: localStorage.getItem('email'),
             uname: uname,
-            std: std
+            std: std,
+            country: country,
+            city: city
         }).then(res => {
-            if(res.data = true) {
+            if (res.data = true) {
                 Router.push('/');
             }
             else {
@@ -28,12 +40,24 @@ const Register = () => {
             }
         })
     }
+    // const [filterInput, setFilterInput] = useReducer(
+    //     (state, newState) => ({...state, ...newState}),{
+    //         name: "",
+    //         uname: "",
+    //         std: "",
+    //         country: "",
+    //         city: ""
+    //     }
+    // )
+    const [name, updateName] = useState('');
     const [uname, updateUname] = useState('');
     const [std, updateStd] = useState('');
+    const [country, updateCountry] = useState('');
+    const [city, updateCity] = useState('');
     return (
-        <div className="container">
+        <div className="bg">
             <Head>
-                <title>Create Next App</title>
+                <title>Register</title>
                 <link rel="icon" href="/favicon.ico" />
                 <link
                     rel="stylesheet"
@@ -42,16 +66,21 @@ const Register = () => {
                     crossorigin="anonymous"
                 />
             </Head>
-            <h3>You are almost done</h3>
-            <h4>Enter these few details to finish your signup process</h4><br />
-            <Form>
+            <h3 className="text-white">You are almost done</h3>
+            <h4 className="text-white">Enter these few details to finish your signup process</h4><br />
+            <Form className="container">
                 <Form.Group controlId="formBasicEmail">
-                    <p className="form-label">Username</p>
-                    <Form.Control type="email" placeholder="Enter username" onChange={handleNameChange} />
+                    <p className="form-label text-white">Full name*</p>
+                    <Form.Control type="text" placeholder="Enter username" onChange={handleNameChange} />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                    <p className="form-label text-white">Username*</p>
+                    <Form.Control type="text" placeholder="Enter username" onChange={handleUnameChange} />
                 </Form.Group>
 
+
                 <Form.Group controlId="exampleForm.SelectCustom">
-                    <p className="form-label">Standard</p>
+                    <p className="form-label text-white">Standard*</p>
                     <Form.Control as="select" custom onChange={handleStdChange}>
                         <option>1</option>
                         <option>2</option>
@@ -67,11 +96,26 @@ const Register = () => {
                         <option>12</option>
                     </Form.Control>
                 </Form.Group>
-                <Button variant="primary" onClick={addUser}>
-                    Submit
-                </Button>
+
+                <Form.Group controlId="formBasicEmail">
+                    <p className="form-label text-white">Country*</p>
+                    <Form.Control type="text" placeholder="Enter country" onChange={handleCountryChange} />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicEmail">
+                    <p className="form-label text-white">City*</p>
+                    <Form.Control type="text" placeholder="Enter city" onChange={handleCityChange} />
+                </Form.Group>
+                <center>
+                    <Button variant="primary" onClick={addUser}>
+                        Submit
+                    </Button>
+                </center>
             </Form>
             <style jsx>{`
+                .bg {
+                    padding-top: 10%;
+                }
                 h3,h4 {
                     text-align: center;
                 }

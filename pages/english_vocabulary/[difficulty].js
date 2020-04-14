@@ -1,4 +1,3 @@
-import { useRouter, Router } from 'next/router';
 import Head from 'next/head';
 import Header from '../../components/Header';
 import axios from 'axios';

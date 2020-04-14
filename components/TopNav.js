@@ -8,7 +8,7 @@ const logout = () => {
 
 const search = () => {
   console.log(localStorage.getItem('courses'))
-
+  
 }
 
 const TopNav = () => (
@@ -29,6 +29,11 @@ const TopNav = () => (
     <style jsx>{`
       nav {
         background-color: rgba(255, 255, 255, 0.0);
+      }
+      @media(max-width: 768px) {
+        .search-input {
+          display: none;
+        }
       }
       `}
     </style>

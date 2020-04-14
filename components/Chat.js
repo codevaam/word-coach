@@ -18,7 +18,7 @@ export default class Chat extends Component {
               <div className="img_cont_msg">
                 <img
                   src="http://pronksiapartments.ee/wp-content/uploads/2015/10/placeholder-face-big.png"
-                  class="rounded-circle user_img_msg"
+                  className="rounded-circle user_img_msg"
                 />
               </div>
               <div className="msg_cotainer">
@@ -40,7 +40,7 @@ export default class Chat extends Component {
               <div className="img_cont_msg d-flex justify-content-center align-items-center">
                 <img
                   src="https://image.flaticon.com/icons/svg/201/201558.svg"
-                  class="rounded-circle user_img_msg shadow-sm"
+                  className="rounded-circle user_img_msg shadow-sm"
                 />
               </div>
             </div>
@@ -52,18 +52,18 @@ export default class Chat extends Component {
             <div className="input-group">
               <input
                 name="message"
-                class="message form-control shadow-sm type_msg"
+                className="message form-control shadow-sm type_msg"
                 placeholder="Type your message..."
                 onChange={this.typeMessage}
                 value={this.state.message}
               />
               <div className="input-group-append">
                 <span
-                  class="input-group-text send_btn  shadow-sm"
+                  className="input-group-text send_btn  shadow-sm"
                   value="submit"
                   onClick={this.messageSubmit}
                 >
-                  <i class="fas fa-location-arrow" style={{fontSize:"24px"}} />
+                  <i className="fas fa-location-arrow" style={{fontSize:"24px"}} />
                 </span>
               </div>
             </div>
