@@ -1,0 +1,261 @@
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800
+);
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+.header2 {
+  color: #8d97ad;
+  font-weight: 300;
+}
+
+.header2 h1,
+.header2 h2,
+.header2 h3,
+.header2 h4,
+.header2 h5,
+.header2 h6 {
+  color: #3e4555;
+}
+
+.header2.bg-success-gradiant {
+  background: #4b6cb7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4b6cb7, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4b6cb7, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+}
+
+.header2 .font-12 {
+  font-size: 12px;
+}
+
+.header2 .dropdown-item {
+  padding: 8px 1rem;
+  color: #8d97ad;
+}
+
+.header2 .h2-nav .navbar-nav .nav-item .nav-link {
+  padding: 12px 0px;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.header2 .h2-nav .navbar-nav .nav-item .nav-link:hover {
+  color: #263238;
+}
+
+.header2 .h2-nav .navbar-nav .nav-item {
+  margin: 0 20px;
+}
+
+@media (min-width: 1024px) {
+  .header2 .navbar-nav > .dropdown .dropdown-menu {
+    min-width: 210px;
+    margin-top: 0px;
+  }
+  .header2 .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+.header2 .dropdown-toggle::after {
+  display: none;
+}
+
+.header2 .dropdown-submenu > .dropdown-menu.menu-right {
+  left: auto;
+  right: 100%;
+  top: 0;
+}
+
+@media (min-width: 1024px) {
+  .header2 .hover-dropdown .navbar-nav > .dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0px;
+  }
+}
+
+.header2 .btn-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.header2 .btn-dark:hover {
+  color: #fff;
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+
+.header2 .h2-nav .navbar-nav .nav-item .btn {
+  opacity: 0.5;
+}
+
+.header2 .h2-nav .navbar-nav .nav-item .btn:hover {
+  opacity: 1;
+}
+
+.header2 .dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: 0;
+  border-radius: 0.25rem;
+  display: none;
+}
+.banner{
+  font-size: 30px;
+}
+.game-section{
+  background-image: url(./889.jpg);
+  width: 100%;
+  background-position: center center;
+  background-color: cover;
+  background-repeat: no-repeat;
+}
+.player-rank{
+  color: lightseagreen;
+  font-size: 20px;
+  font-weight: bold;
+}
+.player-name{
+  font-size: 20px;
+  font-weight: bold;
+}
+.player-points{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+/*  */
+
+
+
+.chat {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.contacts_body {
+  padding: 0.75rem 0 !important;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+.msg_card_body {
+  overflow-y: auto;
+}
+.card-header {
+  border-radius: 15px 15px 0 0 !important;
+  border-bottom: 0 !important;
+}
+.card-footer {
+  border-top: 0 !important;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.container {
+  align-content: center;
+}
+
+.type_msg {
+  border-radius: 15px 0 0 15px !important;
+  border: 0 !important;
+  color: #3e4555 !important;
+  height: 60px !important;
+  overflow-y: auto;
+}
+.type_msg:focus {
+  outline: 0px !important;
+}
+.send_btn {
+  border-radius: 0 15px 15px 0 !important;
+  background-color:white !important;
+  border: 1px !important;
+  color: black !important;
+  cursor: pointer;
+}
+
+.contacts {
+  list-style: none;
+  padding: 0;
+}
+.contacts li {
+  width: 100% !important;
+  padding: 5px 10px;
+  margin-bottom: 15px !important;
+}
+.active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.user_img {
+  height: 40px;
+  width: 40px;
+  border: 1.5px solid #f5f6fa;
+}
+.user_img_msg {
+  height: 40px;
+  width: 40px;
+  border: 1.5px solid #f5f6fa;
+}
+.img_cont {
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+.img_cont_msg {
+  height: 40px;
+  width: 40px;
+}
+.online_icon {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #4cd137;
+  border-radius: 50%;
+  bottom: 0.2em;
+  right: 0.4em;
+  border: 1.5px solid white;
+}
+.offline {
+  background-color: #c23616 !important;
+}
+.user_info {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 15px;
+}
+.user_info span {
+  font-size: 20px;
+  color: white;
+}
+.user_info p {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.video_cam {
+  margin-left: 50px;
+  margin-top: 5px;
+}
+.video_cam span {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.msg_cotainer {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  border-radius: 25px;
+  background-color: #82ccdd;
+  padding: 10px;
+  position: relative;
+}
+.msg_cotainer_send {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  border-radius: 25px;
+  background-color:#fff6cf;
+  padding: 10px;
+  position: relative;
+}
